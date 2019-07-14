@@ -158,7 +158,7 @@ _Note: These properties need set before the initialization of the camera. Users 
 | **videoRecordingReadyEvent** | Executes when video has completed processing and is ready to be used. |
 | **confirmScreenShownEvent** | Executes when  the picture confirm dialog is shown.. |
 | **confirmScreenDismissedEvent** | Executes when the picture confirm dialog is dismissed either by Retake or Save button. |
-| **parametersSetEvent** | Executes when the camera parameters (preview and picture size) are set. |
+| **parametersSetEvent** | Executes when the camera parameters (preview and picture size and rotation) are set. |
 
 
 ## Option Interfaces
