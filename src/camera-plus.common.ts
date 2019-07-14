@@ -55,6 +55,11 @@ export abstract class CameraPlusBase extends ContentView implements CameraPlusDe
   public static toggleCameraEvent = 'toggleCameraEvent';
 
   /**
+   * String value for hooking into the parametersSetEvent. This event fires when the optimal parameters are set.
+   */
+  public static parametersSetEvent = 'parametersSetEvent';
+
+  /**
    * String value when hooking into the imagesSelectedEvent. This event fires when images are selected from the device library/gallery.
    */
   public static imagesSelectedEvent = 'imagesSelectedEvent';
@@ -351,6 +356,7 @@ export interface IChooseOptions {
 export interface ICameraPlusEvents {
   photoCapturedEvent: any;
   toggleCameraEvent: any;
+  parametersSetEvent: any;
   imagesSelectedEvent: any;
   videoRecordingStartedEvent: any;
   videoRecordingFinishedEvent: any;

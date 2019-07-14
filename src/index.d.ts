@@ -33,6 +33,11 @@ export declare class CameraPlus extends View {
   public static toggleCameraEvent: string;
 
   /**
+   * String value for hooking into the parametersSetEvent. This event fires when the optimal parameters are set.
+   */
+  public static parametersSetEvent: string;
+
+  /**
    * String value when hooking into the imagesSelectedEvent. This event fires when images are selected from the device library/gallery.
    */
   public static imagesSelectedEvent: string;

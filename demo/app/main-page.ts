@@ -19,3 +19,7 @@ export function camLoaded(args: any) {
     console.log(e);
   }
 }
+
+export function parametersSet(args: any) {
+  console.log(args);
+}

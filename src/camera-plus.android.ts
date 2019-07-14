@@ -1339,6 +1339,10 @@ export class CameraPlus extends CameraPlusBase {
     params.setPictureSize(mPictureSize.width, mPictureSize.height);
 
     this.camera.setParameters(params); // set the parameters for the camera
+    this.sendEvent(CameraPlus.parametersSetEvent, {
+      previewSize: { width: params.getPreviewSize().width, height: params.getPreviewSize().height },
+      pictureSize: { width: mPictureSize.width, height: mPictureSize.height }
+    });
     this.camera.setDisplayOrientation(result);
 
     if (this.isVideoEnabled() && this._mediaRecorder) {

@@ -47,6 +47,11 @@ export class CaptureComponent implements OnInit, OnDestroy {
     this.loadImage(e.data as ImageAsset);
   }
 
+  public parametersSet(e: any): void {
+    console.log('PARAMETERS SET');
+    console.log(e.data);
+  }
+
   public toggleCameraEvent(e: any): void {
     console.log('camera toggled');
   }
