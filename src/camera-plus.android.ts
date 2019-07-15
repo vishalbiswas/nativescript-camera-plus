@@ -176,16 +176,7 @@ export class CameraPlus extends CameraPlusBase {
               get owner() {
                 return that.get();
               },
-              onSurfaceTextureSizeChanged: (surface, width, height) => {
-                // set the camera display orientation - if you don't do this the display is not correct when device is rotated
-                this._setCameraDisplayOrientation(
-                  app.android.foregroundActivity,
-                  this.cameraId,
-                  this.camera
-                  // width,
-                  // height
-                );
-              },
+              onSurfaceTextureSizeChanged: (_, __, ___) => {},
               onSurfaceTextureAvailable: (surface, width, height) => {
                 CLog(`*** onSurfaceTextureAvailable ***\nthis.cameraId = ${this.cameraId}`);
                 this._surface = surface; // using this as a reference to toggle camera on surface
@@ -1306,10 +1297,19 @@ export class CameraPlus extends CameraPlusBase {
       params.setRotation(result); // set rotation to save the picture
     }
 
-    const mSupportedPreviewSizes = params.getSupportedPreviewSizes();
     const layoutWidth = this._nativeView.getWidth();
     const layoutHeight = this._nativeView.getHeight();
-    const mPreviewSize = CamHelpers.getOptimalPreviewSize(mSupportedPreviewSizes, layoutWidth, layoutHeight);
+
+    const mSupportedPictureSizes = params.getSupportedPictureSizes();
+    const mPictureSize = CamHelpers.getOptimalPreviewSize(mSupportedPictureSizes, 1280, 720);
+    CLog(`mPictureSize = ${mPictureSize}`);
+
+    const mSupportedPreviewSizes = params.getSupportedPreviewSizes();
+    const mPreviewSize = CamHelpers.getOptimalPreviewSize(
+      mSupportedPreviewSizes,
+      mPictureSize.width,
+      mPictureSize.height
+    );
     CLog(`mPreviewSize = ${mPreviewSize}`);
     if (mPreviewSize) {
       if (this.isVideoEnabled()) {
@@ -1331,10 +1331,6 @@ export class CameraPlus extends CameraPlusBase {
         params.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
       }
     }
-
-    const mSupportedPictureSizes = params.getSupportedPictureSizes();
-    const mPictureSize = CamHelpers.getOptimalPictureSize(mSupportedPictureSizes, layoutWidth, layoutHeight);
-    CLog(`mPictureSize = ${mPictureSize}`);
 
     params.setPictureSize(mPictureSize.width, mPictureSize.height);
 

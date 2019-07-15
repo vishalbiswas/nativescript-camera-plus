@@ -94,7 +94,9 @@ export function getOptimalPreviewSize(
   for (let i = 0; i < sizes.size(); i++) {
     const element = sizes.get(i) as android.hardware.Camera.Size;
     CLog(`size.width = ${element.width}, size.height = ${element.height}`);
-    if (element.width <= width && element.height <= height) {
+    CLog(`tolerance = ${Math.abs(targetRatio - element.height / element.width)}`);
+    const deviation = Math.abs(targetRatio - element.height / element.width);
+    if (element.width <= width && element.height <= height && deviation <= 0.3) {
       if (optimalSize == null) {
         optimalSize = element;
       } else {
@@ -174,9 +176,7 @@ export function getOptimalPictureSize(
   }
 
   CLog(
-    `optimalPictureSize = ${optimalSize}, optimalPictureSize.width = ${
-      optimalSize.width
-    }, optimalPictureSize.height = ${optimalSize.height}`
+    `optimalPictureSize = ${optimalSize}, optimalPictureSize.width = ${optimalSize.width}, optimalPictureSize.height = ${optimalSize.height}`
   );
   return optimalSize;
 }
