@@ -1,7 +1,6 @@
 *.js
 *.js.map
 *.log
-*.d.ts
 !references.d.ts
 *.tgz
 *.zip
@@ -9,28 +8,9 @@
 .idea/
 .vscode/
 !index.d.ts
-!src/typings/*d.ts
+!typings/*d.ts
 !scripts/*.js
-demo/app/*.js
-!demo/karma.conf.js
-!demo/app/tests/*.js
-demo/*.d.ts
-!demo/references.d.ts
-demo/hooks
-demo/lib
-demo/platforms
-demo/node_modules
-node_modules
-demo/app/camplus
-!install.js
+node_modules/
+package/
 
-# angular
-demo-ng/app/*.js
-!demo-ng/karma.conf.js
-demo-ng/*.d.ts
-demo-ng/hooks
-demo-ng/lib
-demo-ng/platforms
-demo-ng/node_modules
-demo-ng/app/camplus
 package-lock.json

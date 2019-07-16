@@ -1,0 +1,11 @@
+import { ImageAsset } from 'tns-core-modules/image-asset';
+export declare function getImageDrawable(iconName: string): number;
+export declare function createImageButton(): android.widget.ImageButton;
+export declare function createTransparentCircleDrawable(): android.graphics.drawable.GradientDrawable;
+export declare function createDateTimeStamp(): string;
+export declare function assetFromPath(path: any, width: any, height: any, keepAspectRatio: any): ImageAsset;
+export declare function getOptimalPreviewSize(sizes: java.util.List<android.hardware.Camera.Size>, width: number, height: number): android.hardware.Camera.Size;
+export declare function getOptimalPictureSize(sizes: java.util.List<android.hardware.Camera.Size>, width: number, height: number): android.hardware.Camera.Size;
+export declare function calculateInSampleSize(options: android.graphics.BitmapFactory.Options, reqWidth: number, reqHeight: number): number;
+export declare function getOrientationFromBytes(data: any): number;
+export declare function createImageConfirmationDialog(data: any, retakeText?: string, saveText?: string): Promise<boolean>;
