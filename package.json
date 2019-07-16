@@ -1,6 +1,100 @@
 {
-  "name": "camplus-root",
+  "name": "@nstudio/nativescript-camera-plus",
+  "version": "2.2.0",
+  "description": "An advanced, embeddable camera for NativeScript.",
+  "main": "camera-plus",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "5.0.0",
+      "ios": "5.0.0"
+    }
+  },
   "scripts": {
-    "precommit": "cd src && lint-staged"
+    "precommit": "lint-staged",
+    "clean": "rm -rf node_modules package-lock.json",
+    "tsc": "tsc -skipLibCheck",
+    "build": "npm i && tsc",
+    "link": "npm i && cd ../demo && npm i && cd ../src && npm run plugin.link",
+    "demo.reset": "cd ../demo && rimraf platforms",
+    "plugin.link": "npm link && cd ../demo && npm link @nstudio/nativescript-camera-plus && cd ../src",
+    "plugin.tscwatch": "npm run tsc -- -w",
+    "nuke": "rm -rf node_modules && cd ../demo && rm -rf hooks node_modules platforms && cd ../demo-ng && rm -rf hooks node_modules platforms",
+    "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --emulator --syncAllFiles",
+    "demo.ios.device": "npm run preparedemo && cd ../demo && tns run ios",
+    "demo.ng.ios": "npm run preparedemong && cd ../demo-ng && tns run ios --emulator",
+    "demo.ng.ios.device": "npm run preparedemong && cd ../demo-ng && tns run ios",
+    "demo.android": "npm run preparedemo && cd ../demo && tns run android --syncAllFiles",
+    "demo.android.device": "npm run preparedemo && cd ../demo && tns run android",
+    "demo.ng.android": "npm run preparedemong && cd ../demo-ng && tns run android --emulator",
+    "demo.ng.android.device": "npm run preparedemong && cd ../demo-ng && tns run android",
+    "test.ios": "cd ../demo && tns test ios --emulator",
+    "test.ios.device": "cd ../demo && tns test ios",
+    "test.android": "cd ../demo && tns test android",
+    "preparedemo": "npm run build && cd ../demo && tns plugin remove @nstudio/nativescript-camera-plus && tns plugin add ../src",
+    "preparedemong": "npm run build && cd ../demo-ng && tns plugin remove @nstudio/nativescript-camera-plus && tns plugin add ../src",
+    "setup": "npm i && cd ../demo && npm i && cd .. && npm run build && cd ../demo && tns plugin add .. && cd ..",
+    "postclone": "npm i && node scripts/postclone.js"
+  },
+  "lint-staged": {
+    "*.{ts, js, json, css, scss, md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nstudio/nativescript-camera-plus.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "JavaScript",
+    "Android",
+    "iOS",
+    "Camera",
+    "Camera Plus"
+  ],
+  "author": {
+    "name": "Nathan Walker",
+    "email": "nwalker@nstudio.io"
+  },
+  "contributors": [
+    {
+      "name": "Brad Martin",
+      "email": "bmartin@nstudio.io"
+    },
+    {
+      "name": "Nathanael Anderson",
+      "email": "nanderson@nstudio.io"
+    },
+    {
+      "name": "Dick Smith",
+      "url": "https://github.com/DickSmith"
+    },
+    {
+      "name": "Shawn Pavel",
+      "url": "https://github.com/ShawnPavel"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/nstudio/nativescript-camera-plus/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/nstudio/nativescript-camera-plus",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3",
+    "tns-core-modules": "~5.1.2",
+    "tns-platform-declarations": "~5.1.2",
+    "typescript": "~3.1.6",
+    "prompt": "^1.0.0",
+    "rimraf": "^2.5.0",
+    "tslint": "^5.11.0",
+    "semver": "^5.5.0"
+  },
+  "dependencies": {
+    "nativescript-permissions": "^1.2.3"
   }
 }
